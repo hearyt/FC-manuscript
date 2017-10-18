@@ -1,0 +1,65 @@
+---
+title: "FC Manuscript 1 Outline"
+author: "Ting Yang"
+date: "October 18, 2017"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(fig.width=8, fig.height=8, fig.path='Figs/',
+                      echo=FALSE, warning=FALSE, message=FALSE)
+```
+
+## Outline 
+<br>
+
+1. Dataset
+
+    * SLICE III clinical dataset
+    * SLICE II clinical dataset for controls
+    * SLICE III flow cytometry datasets (layers 1 and 2)
+    * SLICE II flow cytometry datasets for controls (layers 1 and 2)
+   
+<br>
+
+2. Research Questions
+
+    * Q1: Is PTLDS status associated with higher or lower lymphocyte subset \%?
+    * Q2: What demographic and/or clinical characteristics are associated with higher or lower lymphocyte subset \%?
+  
+<br>
+
+3. Characteristics Table
+
+    * PLTDS vs. Controls:
+      * (1) Age
+      * (2) Gender
+      * (3) Race
+      
+    * PTLDS: follow SLICE III clinical paper characteristics table: 
+      * (4) State of residence, 
+      * (5) Medical Record-Confirmed Lyme Disease Presentation, 
+      * (6) Observed/removed tick in month prior to onset, 
+      * (7) Duration of illness from onset of PTLDS symptoms to enrollment, 
+      * (8) Duration of illness from onset of first sign/symptom to start of first recommended antibiotic treatment course, 
+      * (9) Non-recommended antibiotics prior to recommended antibiotics, 
+      * (10) Steroids prior to recommended antibiotics, 
+      * (11) Total antibiotic exposure from symptom onset, 
+      * (12) Delayed or misdiagnosis.
+
+<br>
+
+4. Analysis Methods for Q1
+
+    * Compare PTLDS patients with controls
+    * Control for age, gender and race
+
+<br>
+
+5. Analysis Methods for Q2
+
+    * PTLDS patients alone
+    * Calculate and test correlation between each lymphocyte subset \% and each characteristic variable
