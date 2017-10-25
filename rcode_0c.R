@@ -1,20 +1,33 @@
 
-## ALISON'S EDITS
+####################
+## ALISON'S EDITS ##
+####################
+
+
+##########################################
+## 1. select subset needed for analysis ##
+##########################################
+
+## select clinical variables 
+
+d.c = d.all[ ,c(names(d.c), "group")]
+
+## select PTLDS patients only (remove controls)
 
 d.c = d.c[which(d.c$group=="07"), ] # PTLDS
 
-#################
-## edit values ##
-#################
+####################
+## 2. edit values ##
+####################
 
 d.c[which(d.c$pid=="07-343"), "flulike_mr"] = 1
 d.c[which(d.c$pid=="07-346"), "sero_mr"] = 1
 d.c[which(d.c$pid=="07-281"), "edisa_dg"] = 1
 d.c[which(d.c$pid=="07-280"), "lys1t_mr"] = 1 # pcr+, more evidence than late lyme IgG
 
-#################################
-## steroids before antibiotics ##
-#################################
+####################################
+## 3. steroids before antibiotics ##
+####################################
 ## did you have steoids before the end of appropirate antibiotic treatment (14 days): 0, 1
 ## antad_mr: first appropriate antibiotic date
 ## ste1d_bm: date you took steroids since onset of lyme
@@ -25,9 +38,9 @@ d.c$antad_mr = strptime(d.c$antad_mr, format="%m/%d/%y")
 d.c$steroid_interval = difftime(d.c$ste1d_bm, d.c$antad_mr, units="days")
 d.c$pretx_st = ifelse(d.c$steroid_interval <= 14, 1, 0)
 
-###########################################
-## setting diagnosis presentation groups ##
-###########################################
+##############################################
+## 4. setting diagnosis presentation groups ##
+##############################################
 ## lysy1_mr: first lyme serology --> Yes, No
 ## lysy2_mr: first POSITIVE lyme serology --> Yes, No
 ## lys1p_mr: is there a CDC-positive test for EARLY lyme (+ELISA, +WB) --> Yes, No
@@ -66,9 +79,9 @@ d.c$epdat_mr = strptime(d.c$epdat_mr, format="%m/%d/%y")
 d.c$sero_dur = difftime(d.c$lys2d_mr, d.c$epdat_mr, units="days")
 d.c$time_sero = ifelse(d.c$sero_dur > 30, 1, 0)
 
-###################################
-## Lyme initial diagnosis groups ##
-###################################
+######################################
+## 5. Lyme initial diagnosis groups ##
+######################################
 ## R: rash
 ## S: serology
 ## C: carditis
@@ -156,9 +169,9 @@ table(d.c$presgrp, useNA="ifany")
 # d.c[which(d.c$pid=="07-355"), "presgrp"] = 2
 # d.c[which(d.c$pid=="07-367"), "presgrp"] = 2
 
-############################
-## confirmed vs. probable ##
-############################
+###############################
+## 6. confirmed vs. probable ##
+###############################
 
 ## rash 
 
@@ -175,9 +188,9 @@ d.c$dxgrp[which(R | C | N | A)] = 1
 d.c$dxgrp[which(R0 & C0 & N0 & A0)] = 0
 table(d.c$dxgrp, useNA="ifany") # no missing data
 
-############################
-## mis-diagnosis category ##
-############################
+###############################
+## 7. mis-diagnosis category ##
+###############################
 ## time_tx: time from beginning of lyme episode to first proper treatment, in days
 ## pretx_st: steroids before appropriate antibiotics
 ## pretx_inax: after the onset of lyme episode, 
@@ -202,22 +215,24 @@ d.c$misdx[which(G | H | I)] = 1
 
 table(d.c$misdx, useNA = "ifany") 
 
-##########################
-## education categories ##
-##########################
+#############################
+## 8. education categories ##
+#############################
 
+d.o = d.all
 table(d.o$educa_dg, useNA="ifany") # no missing data
 
 d.o$educat = NA
 d.o$educat[which(d.o$educa_dg %in% c(1, 2, 3, 4))] = 1
 d.o$educat[which(d.o$educa_dg %in% c(5))] = 2
 
-#####################
-## race categories ##
-#####################
+########################
+## 9. race categories ##
+########################
 
 table(d.o$race2_dg, useNA = "ifany")
 d.o$racecat = ifelse(d.o$hispa_dg==0 & d.o$race1_dg==1 & is.na(d.o$race2_dg), 1, 0)
 table(d.o$racecat, useNA = "ifany")
 
+d.all = d.o
 
