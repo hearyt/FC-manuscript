@@ -230,3 +230,7 @@ dim(d.all)
 length(unique(d.all$pid))
 table(d.all$group)
 
+## make control the reference group
+
+d.all$group = factor(d.all$group, labels=c("PTLDS", "Control"))
+d.all = within(d.all, group <- relevel(group, ref = "Control"))

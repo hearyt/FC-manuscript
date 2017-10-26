@@ -14,7 +14,7 @@ d.c = d.all[ ,c(names(d.c), "group")]
 
 ## select PTLDS patients only (remove controls)
 
-d.c = d.c[which(d.c$group=="07"), ] # PTLDS
+d.c = d.c[which(d.c$group=="PTLDS"), ] 
 
 ####################
 ## 2. edit values ##

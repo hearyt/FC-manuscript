@@ -100,7 +100,6 @@ print(tableOne, nonnormal=c("time_en", "time_tx", "ax_tot"),
 ## Data for Controls and Cases 
 
 d = d.all
-d$group = factor(d$group, labels=c("PTLDS", "Control"))
 
 #############
 ## 10. Age ##

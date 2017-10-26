@@ -35,7 +35,6 @@ library(tidyr)
 library(scales)
 library(tableone)
 library(survival)
-library(tableone)
 library(memisc)
 
 ##########################
@@ -78,6 +77,36 @@ multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
   }
 }
 
+############################################
+## function: multiplot with shared legend ##
+############################################
+
+library(ggplot2)
+library(gridExtra)
+library(grid)
+grid_arrange_shared_legend <- function(..., nrow = 1, ncol = length(list(...)), position = c("bottom", "right")) {
+  plots <- list(...)
+  position <- match.arg(position)
+  g <- ggplotGrob(plots[[1]] + theme(legend.position = position))$grobs
+  legend <- g[[which(sapply(g, function(x) x$name) == "guide-box")]]
+  lheight <- sum(legend$height)
+  lwidth <- sum(legend$width)
+  gl <- lapply(plots, function(x) x + theme(legend.position = "none"))
+  gl <- c(gl, nrow = nrow, ncol = ncol)
+  combined <- switch(position,
+                     "bottom" = arrangeGrob(do.call(arrangeGrob, gl),
+                                            legend,
+                                            ncol = 1,
+                                            heights = unit.c(unit(1, "npc") - lheight, lheight)),
+                     "right" = arrangeGrob(do.call(arrangeGrob, gl),
+                                           legend,
+                                           ncol = 2,
+                                           widths = unit.c(unit(1, "npc") - lwidth, lwidth)))
+  grid.newpage()
+  grid.draw(combined)
+}
+
+
 #########################
 ## function "rounding" ##
 #########################
@@ -116,3 +145,9 @@ compareNA <- function(v1,v2) {
   same[is.na(same)] <- FALSE
   return(same)
 }
+
+#############################
+## function "data_summary" ##
+#############################
+
+source("data_summary.R")
