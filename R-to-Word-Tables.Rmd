@@ -57,6 +57,7 @@ names(tab_0b) = c("Control", "PTLDS", "p")
 row.names(tab_0b)[1] = "Age"
 row.names(tab_0b)[2] = "Gender = Male"
 row.names(tab_0b)[3] = "Race = White"
+row.names(tab_0b)[4] = "Cold/Flu"
 kable(tab_0b)  
 ```
 

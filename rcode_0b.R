@@ -173,6 +173,15 @@ d.c3$group = substring(d.c3[,1], 1, 2)
 ind = which(d.c3$pid %in% c("07-195", "07-204", "07-283", "07-297", "07-196"))
 d.c3 = d.c3[-ind, ]
 
+## vcaus_pe variable: recode--> allegy=2, cold/flu=1, nothing=NA
+ # i manually coded slice II controls to be so
+ # now recode slice III
+
+temp = d.c3$vcaus_pe
+temp[which(d.c3$vcaus_pe==1)] = 2
+temp[which(d.c3$vcaus_pe %in% c(2,3))] = 1
+d.c3$vcaus_pe = temp
+
 #################################
 ## 6. data quality check: flow ##
 #################################
@@ -195,8 +204,9 @@ vars.c = c("pid",
            "lysy1_mr", "lysy2_mr", "lys1p_mr", "lys1t_mr", "lys2d_mr", "epdat_mr", 
            "rash_mr", "carditis_mr", "neuro_mr", "arthritis_mr", 
            "time_tx", "pretx_inax", 
-           "educa_dg", "hispa_dg", "race1_dg", "race2_dg",
            "age", "gender",
+           "educa_dg", "hispa_dg", "race1_dg", "race2_dg",
+           "vcaus_pe", 
            "lys2e_mr", "lys2m_mr", "lys2g_mr", "lys2c_mr",
            "fzip3_dg", 
            "tickb_lh", 

@@ -92,7 +92,6 @@ tableOne <- CreateTableOne(vars=vars, data=d.c,
 tab_0a = print(tableOne, nonnormal=c("time_en", "time_tx", "ax_tot"), 
       exact=c("state", "group2", "tick", "pretx_inax", "pretx_st", "misdx"), 
       quote=TRUE, noSpaces=TRUE)
-tab_0a
 tab_0a = data.frame(tab_0a)
 
 #############################################
@@ -121,17 +120,24 @@ d$Gender = factor(d$gender, labels=c("Female", "Male"))
 
 d$Race = factor(d$racecat, labels=c("Other", "White"))
 
+#################################
+## 13. Allergies, Cold, or Flu ##
+#################################
+
+d$Cold.Flu = ifelse(d$vcaus_pe==1, 1, 0)
+d$Cold.Flu[which(is.na(d$Cold.Flu))] = 0
+d$Cold.Flu = factor(d$Cold.Flu, labels=c("Allergy/NA", "Cold/Flu"))
+
 ###################################################
-## 13. characteristics table: controls and PTLDS ##
+## 14. characteristics table: controls and PTLDS ##
 ###################################################
 
-vars = c("Age", "Gender", "Race")
+vars = c("Age", "Gender", "Race", "Cold.Flu")
 
 tableOne <- CreateTableOne(vars=vars, data=d, strata="group", 
-                           factorVars=c("Gender", "Race"))
-tab_0b = print(tableOne, nonnormal=c("Age"), exact=c("Gender", "Race"), 
+                           factorVars=c("Gender", "Race", "Cold.Flu"))
+tab_0b = print(tableOne, nonnormal=c("Age"), exact=c("Gender", "Race", "Cold.Flu"), 
                quote=TRUE, noSpaces=TRUE)
-tab_0b
-tab_0b = data.frame(tab_0b)[2:4 ,1:3]
+tab_0b = data.frame(tab_0b)[2:5 ,1:3]
 
 
