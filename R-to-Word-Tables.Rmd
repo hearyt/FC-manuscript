@@ -1,0 +1,53 @@
+---
+title: "R-to-Word-Tables: FC Manuscript"
+author: "Ting Yang"
+date: "10/27/2017"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r message=FALSE, results='hide', echo=FALSE, warning=F, fig.show="hide"}
+library(knitr)
+source("rcode_0a.R") # r packages & functions
+source("rcode_0b.R") # process datasets
+source("rcode_0c.R") # Alison's edits
+source("rcode_0d.R") # Ting reproduces early, late, early_late
+source("rcode_0e.R") # characteristics table - TABLE 1
+source("rcode_1.R") # layer 1
+source("rcode_2.R") # layer 2
+```
+
+## 1. Table 1
+## 2. Table 2
+
+```{r, message=F, echo=F}
+tab0 = l_1[[3]][1, ]
+tab1 = l_1[[3]][2:9, ]
+tab2 = l_2[[3]][2:5, ]
+tab3 = l_3[[3]][2:6, ]
+tab4 = l_4[[3]][2:5, ]
+tab5 = l_5[[3]][2:6, ]
+empty = NA
+
+row.names(tab0) = "N"
+row.names(tab1) = c("TCR Gamma Delta", "CD4+ T", "CD8+ T", "CD4- CD8-",
+                     "NK", "CD8+ NK", "CD3-", "B")
+row.names(tab2) = c("CD4+ T Naive", "CD4+ T CM", "CD4+ T EM", "CD4+ T EMRA")
+row.names(tab3) = c("CD4+ Th1", "CD4+ Th2", "CD4+ Th17", "CD4+ Th1/17", "CD4+ Th9")
+row.names(tab4) = c("CD8+ T Naive", "CD8+ T CM", "CD8+ T EM", "CD8+ T EMRA")
+row.names(tab5) = c("CD8+ Th1", "CD8+ Th2", "CD8+ Th17", "CD8+ Th1/17", "CD8+ Th9")
+
+tab = data.frame(rbind(tab0, empty, tab1, empty, tab2, empty, tab3, empty, tab4, empty, tab5))
+row.names(tab)[c(2, 11, 16, 22, 27)] = c("Lymphocyte Subsets", 
+                                         "CD4+ T Memory Subsets", 
+                                         "CD4+ Th Subsets ",
+                                         "CD8+ T Memory Subsets", 
+                                         "CD8+ Th Subsets ")
+kable(tab)  
+```
+
+
+

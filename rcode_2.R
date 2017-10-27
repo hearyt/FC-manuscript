@@ -13,14 +13,14 @@ d1 = d[ ,c("alive.lymph", "cd4.pos.t", lv, "group")]
 k = 3 # starting index of variables of interest (lv)
 k.parent = 2 # index of the parent node
 k.den = 2 # index of denominator
-lab.x.tick.marks = c("CD4+ Naive", "CD4+ CM", "CD4+ EM", "CD4+ EMRA")
+lab.x.tick.marks = c("CD4+ T Naive", "CD4+ T CM", "CD4+ T EM", "CD4+ T EMRA")
 lab.y = "% of CD4+ T" # y axis label
 bin.width = 0.005 # dot size in figure
-caption.fig = "Second Layer, CD4+ T" # table and figure caption
-caption.tab = "Second Layer, \\% of CD4+ T" # table and figure caption
+caption.fig = "CD4+ T, Memory Subsets" # table and figure caption
+caption.tab = "\\% of CD4+ T" # table and figure caption
 leg.pos = "none" # legend position
 
-l_5 = data_summary(lv, d1, k, k.parent, k.den, lab.y, bin.width, caption.fig, caption.tab)
+l_2 = data_summary(lv, d1, k, k.parent, k.den, lab.y, bin.width, caption.fig, caption.tab)
 
 ## CD4+ T, Th1, Th2, Th17, Th1/17, Th9
 
@@ -36,11 +36,11 @@ k.den = 2 # index of denominator
 lab.x.tick.marks = c("CD4+ Th1", "CD4+ Th2", "CD4+ Th17", "CD4+ 1/17", "CD4+ Th9")
 lab.y = "% of CD4+ T" # y axis label
 bin.width = 0.005 # dot size in figure
-caption.fig = "Second Layer, CD4+ T" # table and figure caption
-caption.tab = "Second Layer, \\% of CD4+ T" # table and figure caption
+caption.fig = "CD4+ Th cells" # table and figure caption
+caption.tab = "\\% of CD4+ T" # table and figure caption
 leg.pos = "none" # legend position
 
-l_9 = data_summary(lv, d1, k, k.parent, k.den, lab.y, bin.width, caption.fig, caption.tab)
+l_3 = data_summary(lv, d1, k, k.parent, k.den, lab.y, bin.width, caption.fig, caption.tab)
 
 ##########################
 ## second layer: CD8+ T ##
@@ -56,14 +56,14 @@ d1 = d[ ,c("alive.lymph", "cd8.pos.t", lv, "group")]
 k = 3 # starting index of variables of interest (lv)
 k.parent = 2 # index of the parent node
 k.den = 2 # index of denominator
-lab.x.tick.marks = c("CD8+ Naive", "CD8+ CM", "CD8+ EM", "CD8+ EMRA")
+lab.x.tick.marks = c("CD8+ T Naive", "CD8+ T CM", "CD8+ T EM", "CD8+ T EMRA")
 lab.y = "% of CD8+ T" # y axis label
 bin.width = 0.005 # dot size in figure
-caption.fig = "Second Layer, CD8+ T" # table and figure caption
-caption.tab = "Second Layer, \\% of CD8+ T" # table and figure caption
+caption.fig = "CD8+ T, Memory Subsets" # table and figure caption
+caption.tab = "\\% of CD8+ T" # table and figure caption
 leg.pos = "none" # legend position
 
-l_10 = data_summary(lv, d1, k, k.parent, k.den, lab.y, bin.width, caption.fig, caption.tab)
+l_4 = data_summary(lv, d1, k, k.parent, k.den, lab.y, bin.width, caption.fig, caption.tab)
 
 ## CD8+ T, Th1, Th2, Th17, Th1/17, Th9
 
@@ -79,15 +79,15 @@ k.den = 2 # index of denominator
 lab.x.tick.marks = c("CD8+ Th1", "CD8+ Th2", "CD8+ Th17", "CD8+ 1/17", "CD8+ Th9")
 lab.y = "% of CD8+ T" # y axis label
 bin.width = 0.005 # dot size in figure
-caption.fig = "Second Layer, CD8+ T" # table and figure caption
-caption.tab = "Second Layer, \\% of CD8+ T" # table and figure caption
+caption.fig = "CD8+ Th cells" # table and figure caption
+caption.tab = "\\% of CD8+ T" # table and figure caption
 leg.pos = "none" # legend position
 
-l_14 = data_summary(lv, d1, k, k.parent, k.den, lab.y, bin.width, caption.fig, caption.tab)
+l_5 = data_summary(lv, d1, k, k.parent, k.den, lab.y, bin.width, caption.fig, caption.tab)
 
 #####################
 ## combine figures ##
 #####################
 
-grid_arrange_shared_legend(l_5[[2]], l_9[[2]], l_10[[2]], l_14[[2]], 
+grid_arrange_shared_legend(l_2[[2]], l_4[[2]], l_3[[2]], l_5[[2]], 
                            nrow = 2, ncol = 2)

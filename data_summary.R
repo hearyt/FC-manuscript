@@ -89,8 +89,8 @@ data_summary <- function(lv, d1, k, k.parent, k.den, lab.y, binwidth, caption.fi
   tab2 = print(tab2, nonnormal=vars, smd=FALSE, quote=FALSE, noSpaces=TRUE)
   tab2 = data.frame(tab2)[ ,1:3]
   row.names(tab2)[-1] = lv
-  tab2 = xtable( tab2, caption = caption.tab )
-  align(tab2) <- "lccc"
+  #tab2 = xtable( tab2, caption = caption.tab )
+  #align(tab2) <- "lccc"
   
   ####################
   ## return results ##
