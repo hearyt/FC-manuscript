@@ -89,9 +89,11 @@ vars = c("state", "group2", "tick", "time_en", "time_tx",
 tableOne <- CreateTableOne(vars=vars, data=d.c, 
                            factorVars=c("state", "group2", "tick", 
                                         "pretx_inax", "pretx_st", "misdx"))
-print(tableOne, nonnormal=c("time_en", "time_tx", "ax_tot"), 
+tab_0a = print(tableOne, nonnormal=c("time_en", "time_tx", "ax_tot"), 
       exact=c("state", "group2", "tick", "pretx_inax", "pretx_st", "misdx"), 
       quote=TRUE, noSpaces=TRUE)
+tab_0a
+tab_0a = data.frame(tab_0a)
 
 #############################################
 ## CHARACTERISTICS TABLE: CONTROLS & PTLDS ##
@@ -127,8 +129,9 @@ vars = c("Age", "Gender", "Race")
 
 tableOne <- CreateTableOne(vars=vars, data=d, strata="group", 
                            factorVars=c("Gender", "Race"))
-print(tableOne, nonnormal=c("Age"), 
-      exact=c("Gender", "Race"), 
-      quote=TRUE, noSpaces=TRUE)
+tab_0b = print(tableOne, nonnormal=c("Age"), exact=c("Gender", "Race"), 
+               quote=TRUE, noSpaces=TRUE)
+tab_0b
+tab_0b = data.frame(tab_0b)[2:4 ,1:3]
 
 

@@ -21,6 +21,47 @@ source("rcode_2.R") # layer 2
 ```
 
 ## 1. Table 1
+
+```{r, message=F, echo=F}
+names(tab_0a) = "PTLDS"
+  
+row.names(tab_0a)[1] = "N"
+row.names(tab_0a)[2] = "State of Residence"
+row.names(tab_0a)[3] = "Maryland"
+row.names(tab_0a)[4] = "Pennsylvania"
+row.names(tab_0a)[5] = "Delaware"
+row.names(tab_0a)[6] = "New Jersey"
+row.names(tab_0a)[7] = "Other"
+
+row.names(tab_0a)[8] = "Medical Record-Confirmed Lyme Disease Presentation"
+row.names(tab_0a)[9] = "CDC Confirmed: Physician-documented erythema migrans rash"
+row.names(tab_0a)[10] = "CDC Confirmed: Early objective finding / (+) ELISA/WB"
+row.names(tab_0a)[11] = "CDC Confirmed: Late objective finding / (+) IgG-WB"
+row.names(tab_0a)[12] = "CDC Probable: Viral-like illness / (+) ELISA/WB"
+row.names(tab_0a)[13] = "CDC Probable: Non-acute patient reported symptoms / (+) IgG-WB"
+row.names(tab_0a)[14] = "Observed/removed tick in month prior to onset"
+row.names(tab_0a)[15] = "Duration of illness from onset of PTLDS symptoms to enrollment"
+row.names(tab_0a)[16] = "Duration of illness from onset of first sign/symptom to start of first recommended antibiotic treatment course"
+row.names(tab_0a)[17] = "Non-recommended antibiotics prior to recommended antibiotics"
+row.names(tab_0a)[18] = "Steroids prior to recommended antibiotics"
+row.names(tab_0a)[19] = "Total antibiotic exposure from symptom onset"
+row.names(tab_0a)[20] = "Delayed or misdiagnosis"
+
+kable(tab_0a)  
+```
+<br>
+
+
+```{r, message=F, echo=F}
+names(tab_0b) = c("Control", "PTLDS", "p")
+row.names(tab_0b)[1] = "Age"
+row.names(tab_0b)[2] = "Gender = Male"
+row.names(tab_0b)[3] = "Race = White"
+kable(tab_0b)  
+```
+
+<br>
+
 ## 2. Table 2
 
 ```{r, message=F, echo=F}
@@ -48,6 +89,7 @@ row.names(tab)[c(2, 11, 16, 22, 27)] = c("Lymphocyte Subsets",
                                          "CD8+ Th Subsets ")
 kable(tab)  
 ```
+<br>
 
 
 
