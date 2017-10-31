@@ -1,7 +1,31 @@
 
-##########################
-## second layer: CD4+ T ##
-##########################
+###################################
+## REGRESSION: PTLDS vs. control ##
+###################################
+
+## extract covariates
+
+vars = c("Age", "Gender", "Race", "Cold.Flu")
+temp = d[ ,c("pid", vars)]
+
+####################
+## 1. first layer ##
+####################
+
+## lymph
+
+lv = code[which(code$layer==1), 2]
+d1 = d[ ,c("alive.lymph", lv, "group", "pid")]
+k = 2 # starting index of variables of interest (lv)
+k.den = 1 # index of denominator
+labs = c("TCR Gamma Delta", "CD4+ T", "CD8+ T", "CD4- CD8-",
+         "NK", "CD8+ NK", "CD3-", "B")
+
+coef1 = summary_regression(lv, d1, k, k.den, labs)
+
+#####################
+## 2. second layer ##
+#####################
 
 ## CD4+ T, Memory
 
@@ -9,44 +33,26 @@ lv = c("cd4.pos.naive",
        "cd4.pos.cm", 
        "cd4.pos.em", 
        "cd4.pos.emra")
-d1 = d[ ,c("alive.lymph", "cd4.pos.t", lv, "group")]
-k = 3 # starting index of variables of interest (lv)
-k.parent = 2 # index of the parent node
-k.den = 2 # index of denominator
-lab.x.tick.marks = c("CD4+ T Naive", "CD4+ T CM", "CD4+ T EM", "CD4+ T EMRA")
-lab.y = "% of CD4+ T" # y axis label
-bin.width = 0.005 # dot size in figure
-caption.fig = "CD4+ T, Memory Subsets" # table and figure caption
-caption.tab = "\\% of CD4+ T" # table and figure caption
-leg.pos = "none" # legend position
+d1 = d[ ,c("cd4.pos.t", lv, "group", "pid")]
+k = 2 # starting index of variables of interest (lv)
+k.den = 1 # index of denominator
+labs = c("CD4+ T Naive", "CD4+ T CM", "CD4+ T EM", "CD4+ T EMRA")
 
-l_2 = data_summary(lv, d1, k, k.parent, k.den, lab.y, bin.width, caption.fig, caption.tab)
-apply(d1, MARGIN = 2, FUN = function(v){sum(is.na(v))}) # missing data
+coef2 = summary_regression(lv, d1, k, k.den, labs)
 
-## CD4+ T, Th1, Th2, Th17, Th1/17, Th9
+## CD4+ T, Th
 
 lv = c("cd4.pos.th1",                       
        "cd4.pos.th2",
        "cd4.pos.th17",                       
        "cd4.pos.th1.17",
        "cd4.pos.th9")
-d1 = d[ ,c("alive.lymph", "cd4.pos.t", "cd4.pos.ccr6.pos", lv, "group")]
-k = 4 # starting index of variables of interest (lv)
-k.parent = 2 # index of the parent node
-k.den = 2 # index of denominator
-lab.x.tick.marks = c("CD4+ Th1", "CD4+ Th2", "CD4+ Th17", "CD4+ 1/17", "CD4+ Th9")
-lab.y = "% of CD4+ T" # y axis label
-bin.width = 0.005 # dot size in figure
-caption.fig = "CD4+ Th cells" # table and figure caption
-caption.tab = "\\% of CD4+ T" # table and figure caption
-leg.pos = "none" # legend position
+d1 = d[ ,c("cd4.pos.t", lv, "group", "pid")]
+k = 2 # starting index of variables of interest (lv)
+k.den = 1 # index of denominator
+labs = c("CD4+ Th1", "CD4+ Th2", "CD4+ Th17", "CD4+ 1/17", "CD4+ Th9")
 
-l_3 = data_summary(lv, d1, k, k.parent, k.den, lab.y, bin.width, caption.fig, caption.tab)
-apply(d1, MARGIN = 2, FUN = function(v){sum(is.na(v))}) # missing data
-
-##########################
-## second layer: CD8+ T ##
-##########################
+coef3 = summary_regression(lv, d1, k, k.den, labs)
 
 ## CD8+ T, Memory
 
@@ -54,44 +60,24 @@ lv = c("cd8.pos.naive",
        "cd8.pos.cm", 
        "cd8.pos.em", 
        "cd8.pos.emra")
-d1 = d[ ,c("alive.lymph", "cd8.pos.t", lv, "group")]
-k = 3 # starting index of variables of interest (lv)
-k.parent = 2 # index of the parent node
-k.den = 2 # index of denominator
-lab.x.tick.marks = c("CD8+ T Naive", "CD8+ T CM", "CD8+ T EM", "CD8+ T EMRA")
-lab.y = "% of CD8+ T" # y axis label
-bin.width = 0.005 # dot size in figure
-caption.fig = "CD8+ T, Memory Subsets" # table and figure caption
-caption.tab = "\\% of CD8+ T" # table and figure caption
-leg.pos = "none" # legend position
+d1 = d[ ,c("cd8.pos.t", lv, "group", "pid")]
+k = 2 # starting index of variables of interest (lv)
+k.den = 1 # index of denominator
+labs = c("CD8+ T Naive", "CD8+ T CM", "CD8+ T EM", "CD8+ T EMRA")
 
-l_4 = data_summary(lv, d1, k, k.parent, k.den, lab.y, bin.width, caption.fig, caption.tab)
-apply(d1, MARGIN = 2, FUN = function(v){sum(is.na(v))}) # missing data
+coef4 = summary_regression(lv, d1, k, k.den, labs)
 
-## CD8+ T, Th1, Th2, Th17, Th1/17, Th9
+## CD8+ T, Th
 
 lv = c("cd8.pos.th1",                       
        "cd8.pos.th2",
        "cd8.pos.th17",                       
        "cd8.pos.th1.17",
        "cd8.pos.th9")
-d1 = d[ ,c("alive.lymph", "cd8.pos.t", "cd8.pos.ccr6.pos", lv, "group")]
-k = 4 # starting index of variables of interest (lv)
-k.parent = 2 # index of the parent node
-k.den = 2 # index of denominator
-lab.x.tick.marks = c("CD8+ Th1", "CD8+ Th2", "CD8+ Th17", "CD8+ 1/17", "CD8+ Th9")
-lab.y = "% of CD8+ T" # y axis label
-bin.width = 0.005 # dot size in figure
-caption.fig = "CD8+ Th cells" # table and figure caption
-caption.tab = "\\% of CD8+ T" # table and figure caption
-leg.pos = "none" # legend position
+d1 = d[ ,c("cd8.pos.t", lv, "group", "pid")]
+k = 2 # starting index of variables of interest (lv)
+k.den = 1 # index of denominator
+labs = c("CD8+ Th1", "CD8+ Th2", "CD8+ Th17", "CD8+ 1/17", "CD8+ Th9")
 
-l_5 = data_summary(lv, d1, k, k.parent, k.den, lab.y, bin.width, caption.fig, caption.tab)
-apply(d1, MARGIN = 2, FUN = function(v){sum(is.na(v))}) # missing data
+coef5 = summary_regression(lv, d1, k, k.den, labs)
 
-#####################
-## combine figures ##
-#####################
-
-grid_arrange_shared_legend(l_2[[2]], l_4[[2]], l_3[[2]], l_5[[2]], 
-                           nrow = 2, ncol = 2)

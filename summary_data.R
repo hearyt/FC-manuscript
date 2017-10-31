@@ -1,5 +1,5 @@
 
-data_summary <- function(lv, d1, k, k.parent, k.den, lab.y, binwidth, caption.fig, caption.tab)
+summary_data <- function(lv, d1, k, k.parent, k.den, lab.y, binwidth, caption.fig, caption.tab)
   
 {
   #############

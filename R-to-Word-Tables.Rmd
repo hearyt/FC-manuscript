@@ -16,7 +16,8 @@ source("rcode_0b.R") # process datasets
 source("rcode_0c.R") # Alison's edits
 source("rcode_0d.R") # Ting reproduces early, late, early_late
 source("rcode_0e.R") # characteristics table - TABLE 1
-source("rcode_1.R") # layer 1
+source("rcode_1a.R") # layer 1
+source("rcode_1b.R") # layer 2
 source("rcode_2.R") # layer 2
 ```
 
@@ -94,5 +95,18 @@ kable(tab)
 ```
 <br>
 
+
+## 3. Table 3: Regression 
+
+```{r, message=F, echo=F}
+coef = data.frame(rbind(NA, coef1, NA, coef2, NA, coef3, NA, coef4, NA, coef5))
+row.names(coef)[c(1, 10, 15, 21, 26)] = c("Lymphocyte Subsets", 
+                                         "CD4+ T Memory Subsets", 
+                                         "CD4+ Th Subsets ",
+                                         "CD8+ T Memory Subsets", 
+                                         "CD8+ Th Subsets ")
+kable(coef)  
+```
+<br>
 
 

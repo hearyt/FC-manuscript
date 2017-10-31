@@ -150,4 +150,5 @@ compareNA <- function(v1,v2) {
 ## function "data_summary" ##
 #############################
 
-source("data_summary.R")
+source("summary_data.R")
+source("summary_regression.R")

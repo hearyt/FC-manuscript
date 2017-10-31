@@ -5,20 +5,16 @@ source("rcode_0c.R") # Alison's edits (presgrp: Ting's complete mapping algorith
 source("rcode_0d.R") # Ting reproduces early, late, early_late
 source("rcode_0e.R") # characteristics table - TABLE 1
 
-###############################
-## 1. FIRST LAYER - FIGURE 1 ##
-###############################
+####################
+## SUMMARY - DATA ##
+####################
 
-source("rcode_1.R") 
+source("rcode_1a.R") # first layer
+source("rcode_1b.R") # second layer
 
-################################
-## 2. SECOND LAYER - FIGURE 2 ##
-################################
+#############################
+## 2. SUMMARY - REGRESSION ##
+#############################
 
 source("rcode_2.R")
 
-###################
-## 3. REGRESSION ##
-###################
-
-source("rcode_3.R") 

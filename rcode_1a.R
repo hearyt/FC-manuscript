@@ -18,7 +18,7 @@ caption.fig = "First Layer, Lymphocytes" # table and figure caption
 caption.tab = "First Layer, % of Lymphocytes" # table and figure caption
 leg.pos = "top" # legend position
 
-l_1 = data_summary(lv, d1, k, k.parent, k.den, lab.y, bin.width, caption.fig, caption.tab)
+l_1 = summary_data(lv, d1, k, k.parent, k.den, lab.y, bin.width, caption.fig, caption.tab)
 l_1[[2]] # figure
 
 ## missing data
