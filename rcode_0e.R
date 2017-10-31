@@ -140,4 +140,30 @@ tab_0b = print(tableOne, nonnormal=c("Age"), exact=c("Gender", "Race", "Cold.Flu
                quote=TRUE, noSpaces=TRUE)
 tab_0b = data.frame(tab_0b)[2:5 ,1:3]
 
+######################
+## 15. Missing data ##
+######################
+
+## controls
+
+vars = c("Age", "Gender", "Race", "Cold.Flu")
+temp = d[which(d$group=="Control"), vars]
+apply(temp, MARGIN = 2, FUN = function(v){sum(is.na(v))})
+
+## cases
+
+vars = c("Age", "Gender", "Race", "Cold.Flu")
+temp = d[which(d$group=="PTLDSl"), vars]
+apply(temp, MARGIN = 2, FUN = function(v){sum(is.na(v))})
+
+## cases
+ # pretx_st being NA means no steroids, or no appropriate antibiotics, or both
+ # NA in misdx comes from pretx_st
+
+vars = c("state", "group2", "tick", "time_en", "time_tx", 
+         "pretx_inax", "pretx_st", "ax_tot", "misdx")
+temp = d.c[, vars]
+apply(temp, MARGIN = 2, FUN = function(v){sum(is.na(v))})
+
+## conclusion: no missing data in the characteristics table
 

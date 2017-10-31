@@ -20,3 +20,7 @@ leg.pos = "top" # legend position
 
 l_1 = data_summary(lv, d1, k, k.parent, k.den, lab.y, bin.width, caption.fig, caption.tab)
 l_1[[2]] # figure
+
+## missing data
+
+apply(d1, MARGIN = 2, FUN = function(v){sum(is.na(v))})

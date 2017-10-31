@@ -21,6 +21,7 @@ caption.tab = "\\% of CD4+ T" # table and figure caption
 leg.pos = "none" # legend position
 
 l_2 = data_summary(lv, d1, k, k.parent, k.den, lab.y, bin.width, caption.fig, caption.tab)
+apply(d1, MARGIN = 2, FUN = function(v){sum(is.na(v))}) # missing data
 
 ## CD4+ T, Th1, Th2, Th17, Th1/17, Th9
 
@@ -41,6 +42,7 @@ caption.tab = "\\% of CD4+ T" # table and figure caption
 leg.pos = "none" # legend position
 
 l_3 = data_summary(lv, d1, k, k.parent, k.den, lab.y, bin.width, caption.fig, caption.tab)
+apply(d1, MARGIN = 2, FUN = function(v){sum(is.na(v))}) # missing data
 
 ##########################
 ## second layer: CD8+ T ##
@@ -64,6 +66,7 @@ caption.tab = "\\% of CD8+ T" # table and figure caption
 leg.pos = "none" # legend position
 
 l_4 = data_summary(lv, d1, k, k.parent, k.den, lab.y, bin.width, caption.fig, caption.tab)
+apply(d1, MARGIN = 2, FUN = function(v){sum(is.na(v))}) # missing data
 
 ## CD8+ T, Th1, Th2, Th17, Th1/17, Th9
 
@@ -84,6 +87,7 @@ caption.tab = "\\% of CD8+ T" # table and figure caption
 leg.pos = "none" # legend position
 
 l_5 = data_summary(lv, d1, k, k.parent, k.den, lab.y, bin.width, caption.fig, caption.tab)
+apply(d1, MARGIN = 2, FUN = function(v){sum(is.na(v))}) # missing data
 
 #####################
 ## combine figures ##

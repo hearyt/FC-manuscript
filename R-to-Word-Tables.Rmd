@@ -1,7 +1,7 @@
 ---
 title: "R-to-Word-Tables: FC Manuscript"
 author: "Ting Yang"
-date: "10/27/2017"
+date: "10/30/2017"
 output: word_document
 ---
 
@@ -50,6 +50,7 @@ row.names(tab_0a)[20] = "Delayed or misdiagnosis"
 kable(tab_0a)  
 ```
 <br>
+<br>
 
 
 ```{r, message=F, echo=F}
@@ -61,6 +62,7 @@ row.names(tab_0b)[4] = "Cold/Flu"
 kable(tab_0b)  
 ```
 
+<br>
 <br>
 
 ## 2. Table 2
