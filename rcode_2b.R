@@ -1,14 +1,40 @@
 
-###################################
-## REGRESSION: PTLDS vs. control ##
-###################################
+############################
+## REGRESSION: PTLDS Only ##
+############################
 
 ## extract covariates
 
 vars = c("state", "group2", "tick", "time_en", "time_tx", 
          "pretx_inax", "pretx_st", "ax_tot", "misdx",
-         "age", "gender", "race", "Cold.Flu")
+         "age", "gender", "racecat", "vcaus_pe")
 temp = d.c[ ,c("pid", vars)]
+
+#############
+## 10. Age ##
+#############
+
+temp$Age = temp$age
+
+################
+## 11. Gender ##
+################
+
+temp$Gender = factor(temp$gender, labels=c("Female", "Male"))
+
+##############
+## 12. Race ##
+##############
+
+temp$Race = factor(temp$racecat, labels=c("Other", "White"))
+
+#################################
+## 13. Allergies, Cold, or Flu ##
+#################################
+
+temp$Cold.Flu = ifelse(temp$vcaus_pe==1, 1, 0)
+temp$Cold.Flu[which(is.na(temp$Cold.Flu))] = 0
+temp$Cold.Flu = factor(temp$Cold.Flu, labels=c("Allergy/NA", "Cold/Flu"))
 
 ####################
 ## 1. first layer ##

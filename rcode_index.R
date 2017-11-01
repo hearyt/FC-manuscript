@@ -17,6 +17,7 @@ source("rcode_1b.R") # second layer
 ###################
 
 source("rcode_2a.R") # PTLDS vs. Controls
-source("rcode_2b.R") # PTLDS only
+source("rcode_2b.R") # PTLDS only ..... not done yet, reorganize code to generate
+                                      # a dataset for PTLDS only
 
 
