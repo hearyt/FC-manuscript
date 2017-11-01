@@ -215,9 +215,27 @@ d.c$misdx[which(G | H | I)] = 1
 
 table(d.c$misdx, useNA = "ifany") 
 
-#############################
-## 8. education categories ##
-#############################
+#########################################
+## 8. education categories: PTLDS only ##
+#########################################
+
+table(d.c$educa_dg, useNA="ifany") # no missing data
+
+d.c$educat = NA
+d.c$educat[which(d.c$educa_dg %in% c(1, 2, 3, 4))] = 1
+d.c$educat[which(d.c$educa_dg %in% c(5))] = 2
+
+####################################
+## 9. race categories: PTLDS only ##
+####################################
+
+table(d.c$race2_dg, useNA = "ifany")
+d.c$racecat = ifelse(d.c$hispa_dg==0 & d.c$race1_dg==1 & is.na(d.c$race2_dg), 1, 0)
+table(d.c$racecat, useNA = "ifany")
+
+########################################
+## 10. education categories: all data ##
+########################################
 
 d.o = d.all
 table(d.o$educa_dg, useNA="ifany") # no missing data
@@ -226,9 +244,9 @@ d.o$educat = NA
 d.o$educat[which(d.o$educa_dg %in% c(1, 2, 3, 4))] = 1
 d.o$educat[which(d.o$educa_dg %in% c(5))] = 2
 
-########################
-## 9. race categories ##
-########################
+###################################
+## 11. race categories: all data ##
+###################################
 
 table(d.o$race2_dg, useNA = "ifany")
 d.o$racecat = ifelse(d.o$hispa_dg==0 & d.o$race1_dg==1 & is.na(d.o$race2_dg), 1, 0)
