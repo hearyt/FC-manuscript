@@ -3,6 +3,11 @@
 ## 1. load data ##
 ##################
 
+## SLICE II clinical data
+
+d.c2 = read.csv(paste0(folder, "Other Data/alldata2.2017.06.01.csv")) # clinical data
+names(d.c2) = tolower(names(d.c2))
+
 ## SLICE III clinical data
 
 d.c3 = read.csv(paste0(folder, "Other Data/alldata3.2017.07.07.csv")) # clinical data
@@ -11,6 +16,11 @@ names(d.c3) = tolower(names(d.c3))
 #####################
 ## 2. process data ##
 #####################
+
+## SLICE II: extract control data
+
+d.c2$group = substring(d.c2[,1], 1, 2)
+d.c2 = d.c2[which(d.c2$group=="09" & d.c2$visit==1.0), ]
 
 ## SLICE III: extract group variable
 
@@ -35,9 +45,9 @@ temp[which(d.c3$vcaus_pe==1)] = 2
 temp[which(d.c3$vcaus_pe %in% c(2,3))] = 1
 d.c3$vcaus_pe = temp
 
-#######################
-## 3. extract subset ##
-#######################
+#####################################
+## 3. combine slice II & slice III ##
+#####################################
 
 ## variables needed 
 
@@ -56,4 +66,34 @@ vars.c = c("pid",
            "time_en", "time_tx",
            "ax_tot") # total number of days of antibiotics exposure, use BM form, ant1t, add all up
 
-d.c3 = d.c3[,vars.c]
+## variables in slice II control dataset
+
+vars.c2 = vars.c[which(vars.c %in% names(d.c2))]
+
+## combine
+
+temp1 = d.c3[,vars.c]
+temp2 = d.c2[,vars.c2]
+d.c = merge(temp1, temp2, all=TRUE)
+# d.c$group = substring(d.c$pid, 1, 2)
+
+#######################################
+## 8. combine flow and clinical data ##
+#######################################
+
+## overlapping pids only
+
+pid = intersect(unique(d$pid), unique(d.c$pid))
+
+## merge flow and clinical data
+
+d.all = merge(d, d.c, by="pid", all=FALSE)
+
+dim(d.all)
+length(unique(d.all$pid))
+table(d.all$group)
+
+## make control the reference group
+
+d.all$group = factor(d.all$group, labels=c("PTLDS", "Control"))
+d.all = within(d.all, group <- relevel(group, ref = "Control"))
