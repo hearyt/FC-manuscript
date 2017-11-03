@@ -11,11 +11,12 @@ source("rcode_0b.R") # r functions
 ## 1. LOAD DATA ##
 ##################
 
-source("rcode_1a.R") # process flow cytometry data 
-source("rcode_1b.R") # process clinical data: slice III
-source("rcode_1c.R") # process clinical data: slice II Access
-source("rcode_1d.R") # process clinical data: slice II REDCap
-source("rcode_1e.R") # combine data 
+source("rcode_1a.R") # list of clinical variables to extract 
+source("rcode_1b.R") # process flow cytometry data 
+source("rcode_1c.R") # process clinical data: slice III
+source("rcode_1d.R") # process clinical data: slice II Access
+source("rcode_1e.R") # process clinical data: slice II REDCap
+source("rcode_1f.R") # combine data 
 
 source("rcode_0c.R") # Alison's edits (presgrp: Ting's complete mapping algorithm)
 source("rcode_0d.R") # Ting reproduces early, late, early_late

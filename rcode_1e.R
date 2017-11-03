@@ -1,28 +1,36 @@
 
-##############################
-## 1. combine clinical data ##
-##############################
+#########################################
+## CLINICAL, REDCAP: SLICE II CONTROLS ##
+#########################################
 
-d.c = merge(temp1, temp2, all=TRUE)
-# d.c$group = substring(d.c$pid, 1, 2)
+##################
+## 1. load data ##
+##################
 
-#####################################
-## 2. combine flow & clinical data ##
-#####################################
+token = "883E8E3BDDD28F049F6B2D2C725B94D4"
+out = postForm("https://mrprcbcw.hosts.jhmi.edu/redcap/api/",
+                token=token,
+                content="record",
+                type="flat",
+                format="csv",
+                .opts=curlOptions(ssl.verifypeer=FALSE))
 
-## overlapping pids only
+d.r = read.table(file = textConnection(out), header = TRUE, sep = ",", na.strings = "",
+                 stringsAsFactors = FALSE)
 
-pid = intersect(unique(d$pid), unique(d.c$pid))
+#####################
+## 2. process data ##
+#####################
 
-## merge flow and clinical data
+## extract visit 1
 
-d.all = merge(d, d.c, by="pid", all=FALSE)
+d.r = d.r[which(d.r$redcap_event_name == "visit_1_arm_1"), ]
 
-dim(d.all)
-length(unique(d.all$pid))
-table(d.all$group)
+#######################
+## 3. extract subset ##
+#######################
 
-## make control the reference group
+## extract subset
 
-d.all$group = factor(d.all$group, labels=c("PTLDS", "Control"))
-d.all = within(d.all, group <- relevel(group, ref = "Control"))
+d.r2 = d.r[ ,vars.c3]
+
